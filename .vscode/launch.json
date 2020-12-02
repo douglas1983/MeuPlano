@@ -1,0 +1,37 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - MpAdminApplication",
+      "request": "launch",
+      "mainClass": "app.meuplano.mpadmin.MpAdminApplication",
+      "projectName": "mp-admin"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - UsertestApplication",
+      "request": "launch",
+      "mainClass": "app.meuplano.usertest.UsertestApplication"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-MpEurekaServerApplication<mp-eureka-server>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "app.meuplano.mpeurekaserver.MpEurekaServerApplication",
+      "projectName": "mp-eureka-server",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-UsertestApplication<usertest>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "app.meuplano.usertest.UsertestApplication",
+      "projectName": "usertest",
+      "args": ""
+    }
+  ]
+}
