@@ -8,6 +8,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import app.meuplano.mpadmin.entities.Endereco;
@@ -57,6 +58,16 @@ public class EmpresaService {
 
   public void deleleById(Long id) {
     repository.deleteById(id);
+  }
+
+  public Empresa update(long id, Empresa empresa) {
+    Empresa empresaUpdate = repository.findById(id).orElse(null);
+    if (empresaUpdate != null) {
+      empresaUpdate.setDataUpdate(empresa);
+      return repository.save(empresaUpdate);
+    }
+    return null;
+
   }
 
 }

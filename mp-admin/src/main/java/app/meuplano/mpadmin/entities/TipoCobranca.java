@@ -40,11 +40,6 @@ public class TipoCobranca extends AuditModel<String> {
   @NotBlank
   private String descricao;
 
-  @OneToMany()
-  @JoinColumn(name = "empresa_id")
-  @JsonIgnore
-  private Set<Empresa> empresas;
-
   public void setDataUpdate(TipoCobranca tipo) {
     if (!Strings.isNullOrEmpty(tipo.getDescricao())) {
       setDescricao(tipo.getDescricao());

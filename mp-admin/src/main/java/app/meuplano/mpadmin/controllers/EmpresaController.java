@@ -62,11 +62,12 @@ public class EmpresaController {
   @ApiResponse(description = "Successful Operation", responseCode = "200", content = @Content(mediaType = "application/json"))
   @PutMapping(value = "/{id}", consumes = { "application/json" })
   public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Empresa empresa) {
-    return service.findById(id).map(record -> {
-      record.setDataUpdate(empresa);
-      Empresa updated = service.save(record);
-      return ResponseEntity.ok().body(updated);
-    }).orElse(ResponseEntity.notFound().build());
+    Empresa updated = service.update(id, empresa);
+    if (updated == null)
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa não localizada para atualizar os dados");
+
+    return ResponseEntity.ok().body(updated);
+
   }
 
   @Operation(summary = "Excluí um Empresa por ID", description = "Excluí um Empresa por ID", tags = { "Empresas" })

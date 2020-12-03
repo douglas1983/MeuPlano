@@ -51,7 +51,7 @@ public class Pessoa extends AuditModel<String> {
 
   private String documento3;
 
-  @OneToMany()
+  @OneToMany(cascade = CascadeType.ALL)
   @JoinColumn(name = "pessoa_id")
   private Set<Endereco> enderecos;
 
@@ -77,6 +77,9 @@ public class Pessoa extends AuditModel<String> {
   }
 
   public void setDataUpdate(Pessoa pessoa) {
+    if ((pessoa.getId() != null) && (pessoa.getId() > 0)) {
+      setId(pessoa.getId());
+    }
     if (!Strings.isNullOrEmpty(pessoa.getNome())) {
       setNome(pessoa.getNome());
     }

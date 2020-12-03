@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.google.common.base.Strings;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -33,8 +35,10 @@ public class Empresa extends AuditModel<String> {
   @JoinColumn(name = "tipo_cobranca_id", nullable = false)
   private TipoCobranca tipoCobranca;
 
-  @OneToOne(cascade = CascadeType.PERSIST)
+  @OneToOne(cascade = CascadeType.ALL)
   private Pessoa pessoa;
+
+  private String url;
 
   public void setDataUpdate(Empresa empresa) {
 
@@ -42,7 +46,18 @@ public class Empresa extends AuditModel<String> {
       setTipoCobranca(empresa.getTipoCobranca());
     }
     if (empresa.getPessoa() != null) {
+      if ((empresa.getPessoa().getEnderecos() != null) && (empresa.getPessoa().getEnderecos().size() > 0)) {
+        Pessoa pessoa = getPessoa();
+        for (Endereco end : empresa.getPessoa().getEnderecos()) {
+          end.setPessoa(pessoa);
+        }
+      } else {
+        empresa.getPessoa().setEnderecos(pessoa.getEnderecos());
+      }
       setPessoa(empresa.getPessoa());
+    }
+    if (!Strings.isNullOrEmpty(empresa.getUrl())) {
+      setUrl(empresa.getUrl());
     }
   }
 }
