@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.base.Strings;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -53,9 +54,42 @@ public class Endereco extends AuditModel<String> {
 
   private Long lon;
 
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "pessoa_id", nullable = false)
-  @JsonIgnore
+  @ManyToOne(fetch = FetchType.LAZY, optional = true)
+  @JoinColumn(name = "pessoa_id")
+  @JsonIgnore()
   private Pessoa pessoa;
+
+  public void setDataUpdate(Endereco endereco) {
+    if (!Strings.isNullOrEmpty(endereco.getCep())) {
+      setCep(endereco.getCep());
+    }
+
+    if (!Strings.isNullOrEmpty(endereco.getLagradouro())) {
+      setLagradouro(endereco.getLagradouro());
+    }
+
+    if (!Strings.isNullOrEmpty(endereco.getComplemento())) {
+      setComplemento(endereco.getComplemento());
+    }
+    if (!Strings.isNullOrEmpty(endereco.getBairro())) {
+      setBairro(endereco.getBairro());
+    }
+    if (!Strings.isNullOrEmpty(endereco.getCidade())) {
+      setCidade(endereco.getCidade());
+    }
+
+    if (!Strings.isNullOrEmpty(endereco.getUf())) {
+      setUf(endereco.getUf());
+    }
+
+    if (endereco.getLat() != null) {
+      setLat(endereco.getLat());
+    }
+
+    if (endereco.getLon() != null) {
+      setLon(endereco.getLon());
+    }
+
+  }
 
 }

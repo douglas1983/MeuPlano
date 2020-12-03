@@ -31,9 +31,18 @@ public class Empresa extends AuditModel<String> {
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "tipo_cobranca_id", nullable = false)
-  private TipoCobranca tipoCobramca;
+  private TipoCobranca tipoCobranca;
 
-  @OneToOne(cascade = CascadeType.ALL)
+  @OneToOne(cascade = CascadeType.PERSIST)
   private Pessoa pessoa;
 
+  public void setDataUpdate(Empresa empresa) {
+
+    if (empresa.getTipoCobranca() != null) {
+      setTipoCobranca(empresa.getTipoCobranca());
+    }
+    if (empresa.getPessoa() != null) {
+      setPessoa(empresa.getPessoa());
+    }
+  }
 }

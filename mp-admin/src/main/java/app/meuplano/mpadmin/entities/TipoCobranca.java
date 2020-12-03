@@ -1,14 +1,19 @@
 package app.meuplano.mpadmin.entities;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Strings;
 
 import lombok.AllArgsConstructor;
@@ -34,6 +39,11 @@ public class TipoCobranca extends AuditModel<String> {
   @Size(max = 100)
   @NotBlank
   private String descricao;
+
+  @OneToMany()
+  @JoinColumn(name = "empresa_id")
+  @JsonIgnore
+  private Set<Empresa> empresas;
 
   public void setDataUpdate(TipoCobranca tipo) {
     if (!Strings.isNullOrEmpty(tipo.getDescricao())) {
