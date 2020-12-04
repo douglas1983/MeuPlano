@@ -14,6 +14,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityScheme;
+import io.swagger.v3.oas.models.servers.Server;
 
 @SpringBootApplication
 @EnableJpaAuditing(auditorAwareRef = "auditorProvider")
@@ -31,7 +32,7 @@ public class MpAdminApplication {
 	@Bean
 	public OpenAPI springEventLogOpenAPI() {
 		SpringDocUtils.getConfig().replaceWithClass(org.springframework.data.domain.Pageable.class, Pageable.class);
-		return new OpenAPI()
+		return new OpenAPI().addServersItem(new Server().url("/"))
 				.info(new Info().title("MEU PLANO.APP API").description("API do ADMIN do MEU PLANO.APP").version("v0.0.1")
 						.license(new License().name("Apache	2.0").url("http://springdoc.org")))
 				.components(new Components().addSecuritySchemes("TOKEN", new SecurityScheme().type(SecurityScheme.Type.HTTP)

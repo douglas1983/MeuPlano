@@ -1,6 +1,5 @@
 package app.meuplano.mpadmin.services;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -8,14 +7,11 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import app.meuplano.mpadmin.entities.Empresa;
 import app.meuplano.mpadmin.entities.Endereco;
 import app.meuplano.mpadmin.entities.Pessoa;
-import app.meuplano.mpadmin.entities.Empresa;
-
-import app.meuplano.mpadmin.repositories.PessoaRepository;
 import app.meuplano.mpadmin.repositories.EmpresaRepository;
 
 @Service

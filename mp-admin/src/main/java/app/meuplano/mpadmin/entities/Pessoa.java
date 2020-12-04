@@ -17,12 +17,14 @@ import com.google.common.base.Strings;
 
 import app.meuplano.mpadmin.dtos.PessoaDTO;
 import app.meuplano.mpadmin.enums.TipoPessoa;
+import io.swagger.v3.oas.annotations.Hidden;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Hidden
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
