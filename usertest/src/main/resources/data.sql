@@ -1,8 +1,8 @@
 INSERT INTO MP_USERS
   (nome, email )
 VALUES
-  ('Douglas Morato', 'dmoratos@gmail.com');
+  ('teste 1', 'teste1@gmail.com');
 INSERT INTO MP_USERS
   (nome, email)
 VALUES
-  ('Adamo Tonete', 'adamotonete@gmail.com');
+  ('Teste', 'teste@gmail.com');
